@@ -7,38 +7,31 @@ public class Passenger : MonoBehaviour
 {
     public NavMeshAgent agent;
     Collider agentCollider;
-    public Collider AgentCollider {get { return agentCollider; } }
+    bool hasReachedExit = false; // Variable to check if the agent has reached the exit
+    public Collider AgentCollider { get { return agentCollider; } }
 
     // Start is called before the first frame update
     void Start()
     {
-         agentCollider = GetComponent<CapsuleCollider>();
-         MoveToExit();
-         
-         
-    }
-
-    public bool CollideSomething() {
-        float rad = GetComponent<CapsuleCollider>().radius;
-        Collider[] contextCollider = Physics.OverlapSphere(transform.position, rad);
-        if (contextCollider.Length > 1)
-            return true;
-        return false;
+        agentCollider = GetComponent<CapsuleCollider>();
+        MoveToExit();
     }
 
     // Update is called once per frame
     void Update()
     {
-    //    if (Input.GetMouseButtonDown(1)) {
-    //     Ray movePosition = Camera.main.ScreenPointToRay(Input.mousePosition);
-    //     if (Physics.Raycast(movePosition, out var hitInfo)) {
-    //         agent.SetDestination(hitInfo.point);            
-    //     }
+        // Check if the agent has reached the exit
+        if (!hasReachedExit && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            hasReachedExit = true;
+            Despawn();
+        }
+    }
 
-    //    }
-        
-        
-
+    // Despawn the agent
+    void Despawn()
+    {
+        Destroy(gameObject);
     }
 
     void MoveToExit()
@@ -57,12 +50,9 @@ public class Passenger : MonoBehaviour
             }
         }
 
-        if(nearestExit != null)
+        if (nearestExit != null)
         {
             agent.SetDestination(nearestExit.transform.position);
         }
     }
-    
-
-    
 }

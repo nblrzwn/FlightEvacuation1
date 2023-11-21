@@ -6,11 +6,11 @@ public class Passengers : MonoBehaviour
 {
     public Passenger agentPrefab;
     List<Passenger> passengers = new List<Passenger>();
-
-    
+    int agentsReachedExitCount = 0; // Variable to keep track of agents that reached the exit
 
     [Range(1f, 10f)]
     public float neighRadius = 1.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,26 +20,18 @@ public class Passengers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (Input.GetMouseButtonDown(0)) 
-        // {
-        //     for (int i=0; i<3; i++) { // try 3 times
-        //         Passenger agent = passengers[Random.Range(0, passengers.Count)];
-        //         if (agent.IsInQueue() == false) {
-        //             agent.MoveToQueue();
-        //             break;
-        //         }
-        //     }
-        // }
-
-        
+        // Check for agents that reached the exit and increment the count
+        for (int i = passengers.Count - 1; i >= 0; i--)
+        {
+          
+        }
     }
 
     void Spawn()
     {
-        
         GameObject frontSeats = GameObject.Find("Seats");
 
-        for(int i = 0; i < frontSeats.transform.childCount; i++)
+        for (int i = 0; i < frontSeats.transform.childCount; i++)
         {
             GameObject seat = frontSeats.transform.GetChild(i).gameObject;
             Vector3 seatpos = seat.transform.position;
@@ -49,25 +41,20 @@ public class Passengers : MonoBehaviour
             Vector3 newpos = new Vector3(x, y, z);
 
             Passenger passenger = Instantiate(agentPrefab, newpos, Quaternion.identity);
-
-            // if(passenger.CollideSomething())
-            // {
-            //     continue;
-            // }
-
             passengers.Add(passenger);
-
-        };
-
+        }
     }
 
-    List<Transform> GetNearbyObjects(Passenger passenger) {
+    // Note: This method should be adjusted based on your specific requirements
+    List<Transform> GetNearbyObjects(Passenger passenger)
+    {
         List<Transform> context = new List<Transform>();
         Collider2D[] contextCollider = Physics2D.OverlapCircleAll(passenger.transform.position, neighRadius);
-        foreach (Collider2D c in contextCollider) {
-            if (c == passenger.AgentCollider) 
+        foreach (Collider2D c in contextCollider)
+        {
+            if (c == passenger.AgentCollider)
                 continue;
-            
+
             context.Add(c.transform);
         }
 

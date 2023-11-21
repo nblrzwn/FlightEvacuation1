@@ -60,5 +60,5 @@
         "seatpos"
     ],
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "FlightEvacuation1.sln"
+    "dotnet.defaultSolution": "FlightEvacuation1-main2.sln"
 }

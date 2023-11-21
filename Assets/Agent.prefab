@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7597951561267194175}
   - component: {fileID: 6255445237401159887}
   - component: {fileID: 5727351671681415476}
-  - component: {fileID: -2392419409527708658}
+  - component: {fileID: 2961164842420568668}
   m_Layer: 0
   m_Name: Agent
   m_TagString: Untagged
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 1050573968717104740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97, y: 57.00006, z: -1956}
-  m_LocalScale: {x: 28, y: 30, z: 28}
+  m_LocalPosition: {x: 94.2, y: 57.00006, z: -1956}
+  m_LocalScale: {x: 30, y: 30, z: 28}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,7 +106,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &5727351671681415476
@@ -131,7 +131,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-2392419409527708658
+--- !u!114 &2961164842420568668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
