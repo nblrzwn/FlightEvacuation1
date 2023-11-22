@@ -37,7 +37,7 @@ public class Passengers : MonoBehaviour
             Vector3 seatpos = seat.transform.position;
             var x = seatpos.x;
             var y = seatpos.y;
-            var z = seatpos.z - 33;
+            var z = seatpos.z + 2;
             Vector3 newpos = new Vector3(x, y, z);
 
             Passenger passenger = Instantiate(agentPrefab, newpos, Quaternion.identity);
